@@ -39,6 +39,7 @@ services:
       - "8003:8090"
     volumes:
       - ./var/atlassian/confluence:/var/atlassian/confluence
+      - ./share/confluence:/home/confluence
     depends_on:
       - mysql56
     restart: always
