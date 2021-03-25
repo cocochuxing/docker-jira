@@ -38,7 +38,7 @@ services:
     ports:
       - "8003:8090"
     volumes:
-      - ./var/atlassian/confluence:/var/atlassian/confluence
+      - ./opt/atlassian/confluence:/opt/atlassian/confluence
     depends_on:
       - mysql56
     restart: always
