@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mysql56:
+    image: mysql:5.6.46
+    container_name: jira-mysql
+    ports:
+      - "3310:3306"
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d
+      - ./db/data:/var/lib/mysql
+      - ./db/init-sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: jira123456
+    restart: always
+  jira:
+    build:
+      context: jira
+      dockerfile: Dockerfile
+    container_name: jira-fe
+    ports:
+      - "8002:8080"
+    volumes:
+      - ./var/atlassian/jira:/var/atlassian/jira
+    depends_on:
+      - mysql56
+    restart: always
+  confluence:
+    build:
+      context: confluence
+      dockerfile: Dockerfile
+    container_name: jira-confluence
+    ports:
+      - "8003:8090"
+    volumes:
+      - ./var/atlassian/confluence:/var/atlassian/confluence
+    depends_on:
+      - mysql56
+    restart: always
