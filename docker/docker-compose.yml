@@ -29,17 +29,3 @@ services:
     depends_on:
       - mysql56
     restart: always
-  confluence:
-    #image: confluence/confluence:6.13.0
-    build:
-      context: confluence
-      dockerfile: Dockerfile
-    container_name: jira-confluence
-    ports:
-      - "8003:8090"
-    volumes:
-      - ./var/atlassian/confluence:/var/atlassian/confluence
-      - ./share/confluence:/home/confluence
-    depends_on:
-      - mysql56
-    restart: always

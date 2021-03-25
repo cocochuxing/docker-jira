@@ -9,6 +9,23 @@ sudo docker-compose up -d jira
 sudo docker-compose up -d confluence
 ```
 
+```yaml
+confluence:
+    #image: confluence/confluence:6.13.0
+    build:
+      context: confluence
+      dockerfile: Dockerfile
+    container_name: jira-confluence
+    ports:
+      - "8003:8090"
+    volumes:
+      - ./var/atlassian/confluence:/var/atlassian/confluence
+      - ./share/confluence:/home/confluence
+    depends_on:
+      - mysql56
+    restart: always
+```
+
 ```
 sudo docker-compose up -d
 Creating network "docker_default" with the default driver
