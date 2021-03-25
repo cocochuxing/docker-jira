@@ -37,6 +37,8 @@ services:
     container_name: jira-confluence
     ports:
       - "8003:8090"
+    volumes:
+      - ./var/atlassian/confluence:/var/atlassian/confluence
     depends_on:
       - mysql56
     restart: always
