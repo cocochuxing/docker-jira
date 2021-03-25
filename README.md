@@ -7,6 +7,12 @@ sudo docker-compose down
 sudo docker-compose up -d jira
 sudo docker-compose up -d confluence
 
+sudo docker-compose up -d
+Creating network "docker_default" with the default driver
+Creating jira-mysql ... done
+Creating jira-fe         ... done
+Creating jira-confluence ... done
+
 sudo docker-compose down
 Stopping jira-fe         ... done
 Stopping jira-confluence ... done
