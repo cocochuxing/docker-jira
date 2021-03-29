@@ -5,6 +5,7 @@ USER root
 # 将代理破解包加入容器
 COPY "atlassian-agent.jar" /opt/atlassian/confluence/
 COPY "server.xml" /opt/atlassian/confluence/conf
+RUN mv /opt/atlassian/confluence/confluence/WEB-INF/lib/mail-1.4.5.jar /opt/atlassian/confluence/lib/mail-1.4.5.jar
 RUN mkdir /home/confluence
 RUN chmod -R 777 /home/confluence
 RUN chmod -R 777 /var/atlassian/
