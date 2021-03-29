@@ -17,6 +17,7 @@ services:
       - jira
     environment:
       MYSQL_ROOT_PASSWORD: jira123456
+      - COMPOSE_PROJECT_NAME=jira
     restart: always
   jira:
     #image: jira/jira:v7.12.0
@@ -30,6 +31,8 @@ services:
       - ./var/atlassian/jira:/var/atlassian/jira
     networks:
       - jira
+    environment:
+      - COMPOSE_PROJECT_NAME=jira
     depends_on:
       - mysql56
     restart: always
@@ -46,6 +49,8 @@ services:
       - ./share/confluence:/home/confluence
     networks:
       - jira
+    environment:
+      - COMPOSE_PROJECT_NAME=jira
     depends_on:
       - mysql56
     restart: always
