@@ -48,3 +48,5 @@ Removing network docker_default
 Supported filenames: docker-compose.yml, docker-compose.yaml, compose.yml, compose.yaml
 
 docker network create jira
+
+WARNING: Found orphan containers (mysql, fe) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up.
