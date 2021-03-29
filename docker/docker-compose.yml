@@ -13,6 +13,8 @@ services:
       - ./db/conf.d:/etc/mysql/conf.d
       - ./db/data:/var/lib/mysql
       - ./db/init-sql:/docker-entrypoint-initdb.d
+    networks:
+      - jira
     environment:
       MYSQL_ROOT_PASSWORD: jira123456
     restart: always
@@ -26,6 +28,27 @@ services:
       - "8002:8080"
     volumes:
       - ./var/atlassian/jira:/var/atlassian/jira
+    networks:
+      - jira
     depends_on:
       - mysql56
     restart: always
+  confluence:
+    #image: confluence/confluence:6.13.0
+    build:
+      context: confluence
+      dockerfile: Dockerfile
+    container_name: jira-confluence
+    ports:
+      - "8003:8090"
+    volumes:
+      - ./var/atlassian/confluence:/var/atlassian/confluence
+      - ./share/confluence:/home/confluence
+    networks:
+      - jira
+    depends_on:
+      - mysql56
+    restart: always
+networks:
+  jira:
+    external: true

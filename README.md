@@ -46,3 +46,5 @@ Removing network docker_default
 ```
 
 Supported filenames: docker-compose.yml, docker-compose.yaml, compose.yml, compose.yaml
+
+docker network create jira
