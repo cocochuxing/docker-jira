@@ -16,8 +16,8 @@ services:
     networks:
       - jira
     environment:
-      MYSQL_ROOT_PASSWORD: jira123456
-      - COMPOSE_PROJECT_NAME=jira
+      - MYSQL_ROOT_PASSWORD=jira123456
+      - "COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME"
     restart: always
   jira:
     #image: jira/jira:v7.12.0
@@ -32,7 +32,7 @@ services:
     networks:
       - jira
     environment:
-      - COMPOSE_PROJECT_NAME=jira
+      - "COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME"
     depends_on:
       - mysql56
     restart: always
@@ -50,7 +50,7 @@ services:
     networks:
       - jira
     environment:
-      - COMPOSE_PROJECT_NAME=jira
+      - "COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME"
     depends_on:
       - mysql56
     restart: always
